@@ -4,8 +4,11 @@ import {spawn} from "node:child_process";
 import {appendFile } from "node:fs";
 import {stdout} from "node:process";
 
-const oneMin = 240;
-let count = 0;
+// one min - setInterval / 1000
+const timer = 59;
+
+let startTimer = new Date();
+
 
 const appendOutput = (fullData) => {
   const unixtime = Math.floor(new Date().getTime() / 1000);
@@ -25,7 +28,6 @@ const spawnProcess = () => {
     shell: true
   });
   let fullData = '';
-  count++;
 
   getOutput.stderr.on("data", (data) => {
     console.log(`stderr: ${data}`);
@@ -36,12 +38,17 @@ const spawnProcess = () => {
   });
   
   getOutput.stdout.on("end", () => {
+    let endTimer = new Date();
     stdout.write(fullData.replace(/\n/g, "\r"));
     
-    if(count === oneMin) {
-      count = 0;
+    const delay = endTimer - startTimer;
+    const roundedNumber = Math.floor(delay/1000);
+
+    if(roundedNumber === timer) {
       appendOutput(fullData);
+      startTimer = new Date();
     }
+
   });
    
 }
