@@ -68,38 +68,27 @@ export let usersData =  [
 	},
 	{
 		"user": {
-			"id": "452439e3-c788-417c-be78-42728a7dc970",
-			"name": "John Doe - 3",
+			"id": "75981772-188e-4274-9b06-2af2980f00d6",
+			"name": "Test1",
 			"email": "johndoe@example.com"
 		},
 		"links": {
-			"self": "/api/users/452439e3-c788-417c-be78-42728a7dc970",
+			"self": "/api/users/75981772-188e-4274-9b06-2af2980f00d6",
+			"hobbies": "/api/users/75981772-188e-4274-9b06-2af2980f00d6/hobbies"
+		}
+	},
+	{
+		"user": {
+			"id": "f4dcc119-f8a1-4f43-9a16-1a9d2776abde",
+			"name": "Test3",
+			"email": "johndoe@example.com"
+		},
+		"links": {
+			"self": "/api/users/f4dcc119-f8a1-4f43-9a16-1a9d2776abde",
 			"hobbies": [
-				"/",
-				"a",
-				"p",
-				"i",
-				"u",
-				"s",
-				"e",
-				"r",
-				"4",
-				"5",
-				"2",
-				"3",
-				"9",
-				"-",
-				"c",
-				"7",
-				"8",
-				"1",
-				"b",
-				"d",
-				"0",
-				"h",
-				"o",
-				"/api/users/5f3b4b29-03dd-4ed9-84a3-6dfcfz4c2be98/hobbies",
-				"sports"
+				"/api/users/f4dcc119-f8a1-4f43-9a16-1a9d2776abde/hobbies",
+				"/api/users/f7cdad23-b8e1-477c-9a16-e48c31936ed7/hobbies",
+				"dancing"
 			]
 		}
 	}

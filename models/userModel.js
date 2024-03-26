@@ -21,7 +21,6 @@ export function create(userData) {
         const id =  uuid();
 
         const newUser = {
-            ...userData, 
             user: {
                 id,
                 ...userData.user
@@ -40,7 +39,7 @@ export function create(userData) {
 
 export function update(id, userData) {
     return new Promise((resolve, reject) => {
-      const index = usersData.findIndex(data => data.user.id === id)
+        const index = usersData.findIndex(data => data.user.id === id);
         usersData[index] = {...userData};
         writeDataToFile("./data/usersData.js", usersData);
         resolve(usersData[index])

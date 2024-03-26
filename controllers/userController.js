@@ -22,7 +22,8 @@ export async function getUserHobbies(req, res, id) {
         }
 
         res.writeHead(200, {'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=3600'});
-        const uniqueHobbie = new Set(user.links.hobbies)
+        let arr = [];
+        const uniqueHobbie = new Set([...arr, user.links.hobbies]);
    
         const userHobbies = {
             hobbies: [...uniqueHobbie]
@@ -59,6 +60,7 @@ export async function createUser(req, res) {
 export async function updateUser(req, res, id) {
     try { 
         const userFound = await findUserById(id);
+        const arr = [];
         
         if(!userFound) {
             res.writeHead(404, {'Content-Type': 'application/json'});
@@ -67,8 +69,9 @@ export async function updateUser(req, res, id) {
     
         const body = await parseRequestBody(req);
         const responseData = JSON.parse(body);
-        const uniqueArr = new Set([...userFound.links.hobbies, ...responseData.hobbies]);
-  
+        const hobieLinks = [...arr, userFound.links.hobbies]
+        const uniqueArr = new Set([...hobieLinks, ...responseData.hobbies]);
+      
         const userWithNewHobbies = {
             ...userFound, 
             links: {
@@ -76,7 +79,7 @@ export async function updateUser(req, res, id) {
                 hobbies: [...uniqueArr]
             }
         };
-
+        
         res.writeHead(200, {'Content-Type': 'application/json'});
         const updatedUser = await update(id, userWithNewHobbies);
         return res.end(JSON.stringify(updatedUser));
